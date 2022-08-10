@@ -2,6 +2,7 @@ package com.inetBanking.testCases;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.inetBanking.pageObjects.LoginPage;
@@ -18,5 +19,7 @@ public class TC_LoginTest extends BaseClass {
 		logger.info("Entered Password");
 		pl.clickLogin();
 		logger.info("Clicked on login");
+		String Title=driver.getTitle();
+		Assert.assertTrue(Title.contains(" GTPL Bank Manager HomePage "));	
 	}
 }
