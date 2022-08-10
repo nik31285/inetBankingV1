@@ -39,5 +39,4 @@ public class LoginPage {
 	public void clickReset() {
 		btnReset.click();
 	}
-
 }
