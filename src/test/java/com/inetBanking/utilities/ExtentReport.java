@@ -17,6 +17,8 @@ import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.google.common.io.Files;
+import com.inetBanking.testCases.BaseClass;
 
 public class ExtentReport implements ITestListener{
 	ExtentReports extent;
@@ -35,7 +37,6 @@ public class ExtentReport implements ITestListener{
 			e.printStackTrace();
 		}
 		extent.attachReporter(sparkReporter);
-		System.out.println("Hi");
 		extent.setSystemInfo("Host name","localhost");
 		extent.setSystemInfo("Envoirnment","QA");
 		extent.setSystemInfo("user", "Nishikant");	
@@ -51,35 +52,21 @@ public class ExtentReport implements ITestListener{
 		test=extent.createTest(tr.getName());
 		test.log(Status.FAIL,MarkupHelper.createLabel(tr.getName(),ExtentColor.RED));
 		String screenShotPath=System.getProperty("user.dir")+"\\Screenshots\\"+tr.getName()+".jpeg";
-		File f=new File(screenShotPath);
-		test.addScreenCaptureFromPath(screenShotPath);
-//		if(f.exists()){
-//			test.fail("Screenshot is below"+test.addScreenCaptureFromPath(screenShotPath));
-//		}
+		
+	//	System.out.println(screenShotPath);
+		File output=new File(screenShotPath);
+		File input=BaseClass.capture();
+		try {
+			Files.copy(input, output);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	
+		if(output.exists()){
+			test.fail("Screenshot is below"+test.addScreenCaptureFromPath(screenShotPath));
+		}
 	}
 	public void onFinish(ITestContext context) {
 		extent.flush();
 	}
-
-//	@Test
-//	public void setTheme() {
-//		String timeStamp = new SimpleDateFormat("yyyy.mm.dd.HH.mm.ss").format(new Date());
-//		String reportName = "Test-Report-" + timeStamp + ".html";
-//		sparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "/test-output/" + reportName);
-//		// sparkReporter.loadXMLConfig(System.getProperty("user.dir")+"/extent-config.xml");
-//		try {
-//			sparkReporter.loadXMLConfig(System.getProperty("user.dir") + "/extent-config.xml");
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		extent=new ExtentReports();
-//		extent.attachReporter(sparkReporter);
-//		extent.setSystemInfo("Host name","localhost");
-//		extent.setSystemInfo("Envoirnment","QA");
-//		extent.setSystemInfo("user", "Nishikant");
-//		
-//		sparkReporter.config().setDocumentTitle("InternetBanking Test Report");
-//		sparkReporter.config().setReportName("Functional Test Report");
-//		sparkReporter.config().setTheme(Theme.DARK);
-//	}
 }

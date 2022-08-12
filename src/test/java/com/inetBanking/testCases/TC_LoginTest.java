@@ -12,14 +12,15 @@ public class TC_LoginTest extends BaseClass {
 	public void loginTest() {
 		driver.get(url);
 		logger.info("URL is opened");
-		LoginPage pl=PageFactory.initElements(driver,LoginPage.class);
+		LoginPage pl=new LoginPage(driver);
 		pl.setUserID(userid);
 		logger.info("Entered Username");
 		pl.setPassword(password);
 		logger.info("Entered Password");
 		pl.clickLogin();
-		logger.info("Clicked on login");
+		logger.info("Clicked on login");	
 		String Title=driver.getTitle();
-		Assert.assertTrue(Title.contains(" GTPL Bank Manager HomePage "));	
+		System.out.println(Title);
+		Assert.assertTrue(Title.contains("GTPL Bank Manager HomePage"));	
 	}
 }

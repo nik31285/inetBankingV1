@@ -7,12 +7,12 @@
   <test thread-count="5" name="Test(failed)">
     <parameter name="Browser" value="chrome"/>
     <classes>
-      <class name="com.inetBanking.testCases.TC_LoginTest">
+      <class name="com.inetBanking.testCases.TC_LoginTest_DDT_002">
         <methods>
           <include name="setUp"/>
-          <include name="loginTest"/>
+          <include name="loginTestDDT" invocation-numbers="0 2"/>
         </methods>
-      </class> <!-- com.inetBanking.testCases.TC_LoginTest -->
+      </class> <!-- com.inetBanking.testCases.TC_LoginTest_DDT_002 -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [InetBankingV1] -->

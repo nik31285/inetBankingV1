@@ -10,7 +10,6 @@ public class ReadConfig {
 	Properties prop=new Properties();
 	public ReadConfig()  {
 		String basepath=System.getProperty("user.dir");
-		System.out.println(basepath);
 		FileInputStream fis;
 		try {
 			fis = new FileInputStream("./Configuration/config.properties");

@@ -1,11 +1,15 @@
 package com.inetBanking.testCases;
 
+import java.io.File;
+
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 
@@ -39,6 +43,10 @@ public class BaseClass {
 		driver.manage().window().maximize();
 		logger = Logger.getLogger("eBanking");
 		PropertyConfigurator.configure("Log4j.properties");
+	}
+	public static File capture() {
+		File input=((RemoteWebDriver) driver).getScreenshotAs(OutputType.FILE);
+		return input;
 	}
 
 }
