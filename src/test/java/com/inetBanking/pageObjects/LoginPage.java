@@ -3,13 +3,15 @@ package com.inetBanking.pageObjects;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
-//	WebDriver ldriver;
-//	
-//	LoginPage(WebDriver rdriver){
-//		this.ldriver=rdriver;
-//	}
+	WebDriver ldriver;
+	
+	public LoginPage(WebDriver rdriver){
+		this.ldriver=rdriver;
+		PageFactory.initElements(ldriver, this);
+	}
 	
 	@FindBy(css ="input[type=\"text\"]")
 	WebElement txtUserID;
@@ -22,6 +24,9 @@ public class LoginPage {
 	
 	@FindBy(css="input[type=\"reset\"]")
 	WebElement btnReset;
+	
+	@FindBy(css="a[href=\"Logout.php\"]")
+	WebElement btnLogout;
 	
 	public void setUserID(String UserID) {
 		System.out.println("Hi");
@@ -39,4 +44,8 @@ public class LoginPage {
 	public void clickReset() {
 		btnReset.click();
 	}
+	
+	public void clickLogout() {
+		btnLogout.click();
+	} 
 }
