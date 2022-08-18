@@ -4,11 +4,12 @@
 	<listeners>
 		<listener class-name="com.inetBanking.utilities.ExtentReport"></listener>
 	</listeners>
-  <test thread-count="5" name="Test">
-  	<parameter name="Browser" value="chrome"></parameter>
-    <classes>
-    <class name="com.inetBanking.testCases.TC_LoginTest_DDT_002"></class>
-    <class name="com.inetBanking.testCases.TC_LoginTest"/>
-    </classes>
-  </test> <!-- Test -->
+	<test thread-count="5" name="Test">
+		<parameter name="Browser" value="chrome"></parameter>
+		<classes>
+			<class name="com.inetBanking.testCases.TC_AddCustomerTest_003"></class>
+			<!--<class name="com.inetBanking.testCases.TC_LoginTest_DDT_002"></class>-->
+			<!--<class name="com.inetBanking.testCases.TC_LoginTest"/>-->
+		</classes>
+	</test> <!-- Test -->
 </suite> <!-- Suite -->
